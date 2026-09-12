@@ -2164,19 +2164,5 @@
   apply();
 </script>
 
-// Poster fallback chain: amazon -> wikipedia -> show title
-document.querySelectorAll('.card .poster').forEach(img => {
-  if (!img.dataset.mf && img.dataset.wiki !== '1') return;  // only for non-amazon primaries or wiki ones
-  img.addEventListener('error', () => {
-    // img already failed once (either onerror handler set this.dataset.fail=1)
-    // Try a generic placeholder
-    if (!img.dataset.giveup) {
-      img.dataset.giveup = '1';
-      img.parentElement.dataset.fail = '1';
-      img.parentElement.dataset.title = img.alt;
-    }
-  }, { once: true, capture: true });
-});
-
 </body>
 </html>
